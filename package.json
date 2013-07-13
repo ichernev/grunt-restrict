@@ -1,0 +1,42 @@
+{
+  "name": "grunt-restrict",
+  "description": "Run grunt tasks on subset of their src files.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ichernev/grunt-restrict",
+  "author": {
+    "name": "Iskren Chernev",
+    "email": "iskren.chernev@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ichernev/grunt-restrict.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ichernev/grunt-restrict/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "https://github.com/ichernev/grunt-restrict/blob/master/LICENSE-Apache-2.0"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
