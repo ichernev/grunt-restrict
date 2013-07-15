@@ -49,7 +49,6 @@ module.exports = function(grunt) {
       (grunt.option('file') || '').split(',').forEach(function(file) {
         restricted[file] = true;
       });
-      console.log("restricted " + util.inspect(restricted, {showHidden: true, depth: null}));
       targets.forEach(function(target) {
         files = grunt.task.normalizeMultiTaskFiles(
             grunt.config([task, target]), task);
