@@ -52,16 +52,29 @@ module.exports = function(grunt) {
       targets.forEach(function(target) {
         files = grunt.task.normalizeMultiTaskFiles(
             grunt.config([task, target]), task);
-        files = _.select(files, function(file) {
-          return _.any(file.src, function(f) {
-            return f in restricted;
-          });
-        });
         config = grunt.config([task, target]);
         old_configs[task + ":" + target] = _.extend({}, grunt.config.getRaw([task, target]));
-        delete config.src;
-        delete config.dest;
-        config.files = files;
+        // Check files format
+        if (Array.isArray(config)) {
+          // task: [list of files]
+          // --> Change files. This task shouldn't have a destination.
+          config = [].concat.apply([], _.map(files, function(file) {
+            return _.filter(file.src, function(f) {
+              return f in restricted;
+            });
+          }));
+        } else {
+          // task: {src: [...], dest: file, ...} OR {files: {...}, ...}
+          // --> Change config.files (remove old .src & .dest)
+          files = _.select(files, function(file) {
+            return _.any(file.src, function(f) {
+              return f in restricted;
+            });
+          });
+          delete config.src;
+          delete config.dest;
+          config.files = files;
+        }
         grunt.config([task, target], config);
       });
     }
