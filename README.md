@@ -29,6 +29,7 @@ This task is intended to be used in conjunction with other multiTasks. Lets say
 you're running coffee task with config similar to
 
 ```javascript
+// Setup your tasks as usual
 grunt.initConfig({
   coffee: {
     expand: true,
@@ -36,8 +37,18 @@ grunt.initConfig({
     src: ['**/*.coffee'],
     dest: 'build',
     ext: '.js'
+  },
+
+  watch: {
+    coffee: {
+      files: ['**/*.coffee'],
+      tasks: ['restrict:coffee'],
+    }
   }
 })
+
+// Use this in combination with grunt-contrib-watch
+require('grunt-restrict/tasks/restrict').registerHandlers(grunt);
 ```
 
 And you want to run the coffee task only on `src/foo.coffee`. Then use
@@ -71,4 +82,6 @@ style. Add unit tests for any new or changed functionality. Lint and test your
 code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+0.2.0 Simple detection for source-only tasks, provide watch event handlers
+0.1.1 Removed extra console.log
 0.1.0 Initial commit
