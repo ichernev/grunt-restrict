@@ -39,6 +39,7 @@ grunt.initConfig({
     ext: '.js'
   },
 
+  // (grunt-contrib-)watch task is optional
   watch: {
     coffee: {
       files: ['**/*.coffee'],
@@ -47,7 +48,7 @@ grunt.initConfig({
   }
 })
 
-// Use this in combination with grunt-contrib-watch
+// Use this if you use grunt-contrib-watch
 require('grunt-restrict/tasks/restrict').registerHandlers(grunt);
 ```
 
@@ -82,6 +83,6 @@ style. Add unit tests for any new or changed functionality. Lint and test your
 code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-0.2.0 Simple detection for source-only tasks, provide watch event handlers
-0.1.1 Removed extra console.log
-0.1.0 Initial commit
+* 0.2.0 Simple detection for source-only tasks, provide watch event handlers
+* 0.1.1 Removed extra console.log
+* 0.1.0 Initial commit
