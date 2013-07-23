@@ -13,7 +13,7 @@ var isValidMultiTaskTarget = function(target) {
   return !/^_|^options$/.test(target);
 };
 
-module.exports = function(grunt) {
+var exported = function(grunt) {
   var _ = grunt.util._,
       old_configs = {};
   grunt.registerTask(
@@ -83,3 +83,28 @@ module.exports = function(grunt) {
     }).concat(['restrict:_restore']));
   });
 };
+
+exported.watchHandler = function(grunt) {
+  return function(action, filepath) {
+    var cliArgs = grunt.config.get(['watch', 'options', 'cliArgs']);
+    if (cliArgs == null) {
+      cliArgs = ['--file', filepath];
+    } else {
+      cliArgs[1] += ',' + filepath;
+    }
+    grunt.config(['watch', 'options', 'cliArgs'], cliArgs);
+  };
+};
+
+exported.watchPostRunHandler = function(grunt) {
+  return function() {
+    grunt.config(['watch', 'options', 'cliArgs'], null);
+  };
+};
+
+exported.registerHandlers = function(grunt) {
+  grunt.event.on('watch', exported.watchHandler(grunt));
+  grunt.event.on('watch-post-run', exported.watchPostRunHandler(grunt));
+};
+
+module.exports = exported;

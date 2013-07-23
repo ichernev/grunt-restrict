@@ -54,6 +54,7 @@ module.exports = function(grunt) {
     // Unit tests.
     nodeunit: {
       plain_task: ['test/plain_task_test.js'],
+      unit: ['test/handlers.js'],
       restrict_task_nofile_test: ['test/restrict_task_nofile_test.js'],
       restrict_task_firstfile_test: ['test/restrict_task_firstfile_test.js'],
       restrict_task_firstsecondfile_test: ['test/restrict_task_firstsecondfile_test.js'],
@@ -101,6 +102,8 @@ module.exports = function(grunt) {
     'option:file:test/fixtures/f.js',
     'restrict:task',
     'nodeunit:restrict_task_nomatch_test',
+
+    'nodeunit:unit',
   ]);
 
   // By default, lint and run all tests.
